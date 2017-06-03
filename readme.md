@@ -324,7 +324,7 @@ For convenience, the plugin automatically binds or fires events on certain eleme
 
 ### Save
 
-    $("form").autosave().bind("save", function(event, $inputs) {
+    $("form").autosave().bind("save.autosave", function(event, $inputs) {
 	    // ...
 	}).triggerHandler("save");
 
@@ -343,7 +343,7 @@ This event is bound to each form autosave is attached to.
 
 ### Saved
 
-    $("form").autosave().bind("saved", function(event) {
+    $("form").autosave().bind("saved.autosave", function(event) {
 	    // ...
 	});
 
@@ -362,7 +362,7 @@ This event is fired for each form autosave is attached to.
 
 ### Changed
 
-    $("form").autosave().bind("changed", function(event, input) {
+    $("form").autosave().bind("changed.autosave", function(event, input) {
 	    // ...
 	});
 
@@ -383,7 +383,7 @@ This event is fired on the form containing the input.
 
 ### Modified
 
-    $("form").autosave().bind("modified", function(event, input) {
+    $("form").autosave().bind("modified.autosave", function(event, input) {
 	    // ...
 	});
 
