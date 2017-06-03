@@ -139,12 +139,12 @@
         });
 
         // Attempt to save when "save" is triggered on a form
-        $forms.bind([this.options.events.save, this.options.namespace].join("."), function(e, inputs) {
+        $forms.on([this.options.events.save, this.options.namespace].join("."), function(e, inputs) {
           self.save(inputs, e.type);
         });
 
         // Listen for changes on all inputs
-        $inputs.bind(["change", this.options.namespace].join("."), function(e) {
+        $forms.on(["change", this.options.namespace].join("."), ':input', function(e) {
           $(this).data([self.options.namespace, self.states.changed].join("."), true);
           $(this.form).triggerHandler(self.options.events.changed, [this]);
         });
@@ -152,7 +152,7 @@
         // Listen for modifications on all inputs
         // Use html5 "input" event is available. Otherwise, use "keyup".
         var modifyTriggerEvent = inputSupported ? "input" : "keyup";
-        $inputs.bind([modifyTriggerEvent, this.options.namespace].join("."), function(e) {
+        $forms.on([modifyTriggerEvent, this.options.namespace].join("."), function(e) {
           $(this).data([self.options.namespace, self.states.modified].join("."), true);
           $(this.form).triggerHandler(self.options.events.modified, [this]);
         });
@@ -437,8 +437,8 @@
     change: {
       method: function() {
         var self = this;
-
-        this.forms().bind([this.options.events.changed, this.options.namespace].join("."), function(e, input) {
+        
+        this.forms().on([this.options.events.changed, this.options.namespace].join("."), function(e, input) {
           self.save(input, e.type);
         });
       }
@@ -450,8 +450,8 @@
     modify: {
       method: function() {
         var self = this;
-
-        this.forms().bind([this.options.events.modified, this.options.namespace].join("."), function(e, input) {
+        
+        this.forms().on([this.options.events.modified, this.options.namespace].join("."), function(e, input) {
             self.save(input, e.type);
         });
       }
